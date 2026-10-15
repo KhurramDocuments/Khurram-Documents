@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b2240" />
+  <title>Khurram Documents</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --navy:#0b2240;
+      --navy-2:#102f57;
+      --blue:#187cff;
+      --blue-2:#0b67e7;
+      --bg:#f4f7fb;
+      --panel:#ffffff;
+      --panel-soft:#f7faff;
+      --border:#dfe7f0;
+      --text:#10233f;
+      --muted:#66758a;
+      --shadow:0 12px 30px rgba(16,35,63,.10);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(24,124,255,.08), transparent 26%),
+        var(--bg);
+    }
+    button,input{font:inherit}
+    button{cursor:pointer}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .site-shell{
+      width:min(1540px,calc(100% - 30px));
+      margin:14px auto 40px;
+      background:#fff;
+      border:1px solid #d6e0eb;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(13,34,61,.12);
+    }
+
+    /* ========================= HEADER ========================= */
+    .topbar{
+      height:78px;
+      padding:0 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:linear-gradient(100deg,#0b213e,#0c2749);
+      color:#fff;
+      position:relative;
+      z-index:20;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      min-width:0;
+    }
+    .brand-icon{
+      width:54px;
+      height:54px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#2f94ff,#0467f1);
+      box-shadow:0 8px 22px rgba(0,120,255,.38);
+      border:1px solid rgba(255,255,255,.22);
+      flex:0 0 auto;
+    }
+    .brand-icon i{font-size:26px}
+    .brand-copy h1{
+      margin:0;
+      font-size:1.52rem;
+      line-height:1.08;
+      letter-spacing:-.02em;
+    }
+    .brand-copy p{
+      margin:5px 0 0;
+      color:#d8e5f6;
+      font-size:.76rem;
+    }
+
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+    .desktop-nav a{
+      display:grid;
+      justify-items:center;
+      gap:5px;
+      font-size:.72rem;
+      color:#edf5ff;
+      opacity:.94;
+      transition:.2s ease;
+    }
+    .desktop-nav i{font-size:1.25rem}
+    .desktop-nav a:hover{color:#71b7ff;transform:translateY(-1px)}
+
+    .menu-btn{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.2);
+      color:#fff;
+      background:rgba(255,255,255,.08);
+    }
+
+    .mobile-menu{
+      display:none;
+      background:#0e294b;
+      border-top:1px solid rgba(255,255,255,.12);
+      padding:10px 18px 16px;
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{
+      padding:12px 8px;
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    /* ========================= HERO ========================= */
+    .hero{
+      min-height:170px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      padding:34px 60px 64px;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(7,18,32,.94) 0%,rgba(7,18,32,.78) 46%,rgba(7,18,32,.26) 100%),
+        url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80") center/cover;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0;
+      height:1px;
+      background:rgba(255,255,255,.18);
+    }
+    .hero-copy{
+      position:relative;
+      z-index:2;
+      max-width:720px;
+    }
+    .hero-kicker{
+      width:38px;height:3px;border-radius:2px;
+      background:#1483ff;margin-bottom:16px;
+    }
+    .hero h2{
+      margin:0;
+      font-size:clamp(2rem,4vw,3.1rem);
+      line-height:1.02;
+      letter-spacing:-.045em;
+    }
+    .hero p{
+      margin:12px 0 0;
+      color:#eef5ff;
+      font-size:clamp(.9rem,1.5vw,1rem);
+      line-height:1.6;
+    }
+
+    /* ========================= TABS ========================= */
+    .category-tabs-wrap{
+      padding:0 54px;
+      margin-top:-26px;
+      position:relative;
+      z-index:5;
+    }
+    .category-tabs{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      max-width:760px;
+    }
+    .category-tab{
+      min-height:52px;
+      border:1px solid var(--border);
+      border-radius:11px;
+      background:#fff;
+      color:#2f3e52;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      box-shadow:0 7px 18px rgba(23,53,91,.08);
+      transition:.2s ease;
+    }
+    .category-tab i{font-size:1.1rem}
+    .category-tab:hover{
+      transform:translateY(-2px);
+      border-color:#bfd9ff;
+    }
+    .category-tab.active{
+      color:#fff;
+      background:linear-gradient(135deg,#2992ff,#0b6ff4);
+      border-color:#0f78f8;
+      box-shadow:0 10px 24px rgba(24,124,255,.30);
+    }
+    .count-badge{
+      min-width:26px;
+      height:26px;
+      padding:0 7px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      font-size:.72rem;
+      background:#e8eef5;
+      color:#526278;
+    }
+    .category-tab.active .count-badge{
+      background:#fff;
+      color:#176fd8;
+    }
+
+    /* ========================= MAIN ========================= */
+    .main-content{
+      padding:26px 28px 34px;
+    }
+
+    .section-panel{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(16,35,63,.05);
+    }
+
+    .section-head{
+      min-height:70px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      background:linear-gradient(180deg,#f8fbff,#f4f8fd);
+      border-bottom:1px solid var(--border);
+    }
+    .section-title-wrap{
+      display:flex;
+      align-items:center;
+      gap:13px;
+    }
+    .section-icon{
+      width:38px;height:38px;border-radius:10px;
+      display:grid;place-items:center;
+      color:#123454;
+      background:#edf5ff;
+    }
+    .section-icon i{font-size:1.15rem}
+    .section-head h3{
+      margin:0;
+      font-size:1rem;
+      line-height:1.2;
+    }
+    .section-head p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.74rem;
+    }
+
+    .search-box{
+      width:min(300px,38vw);
+      height:39px;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:0 12px;
+      border:1px solid #d7e1ec;
+      border-radius:9px;
+      background:#fff;
+      color:#718096;
+    }
+    .search-box input{
+      width:100%;
+      border:0;
+      outline:0;
+      color:#24364f;
+      background:transparent;
+      font-size:.78rem;
+    }
+
+    .documents-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      padding:12px;
+    }
+
+    .doc-card{
+      min-width:0;
+      background:#fff;
+      border:1px solid #dfe7f0;
+      border-radius:10px;
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      transition:.2s ease;
+    }
+    .doc-card:hover{
+      transform:translateY(-2px);
+      border-color:#b9d4f7;
+      box-shadow:0 10px 22px rgba(31,74,120,.10);
+    }
+    .thumb-wrap{
+      height:145px;
+      border-radius:7px;
+      background:
+        linear-gradient(135deg,#f8fbff,#edf3f9);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid #e7edf4;
+      position:relative;
+    }
+    .thumb-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:#f8fafc;
+    }
+    .doc-meta{
+      padding:10px 3px 8px;
+      text-align:center;
+      min-height:62px;
+    }
+    .doc-meta h4{
+      margin:0;
+      font-size:.83rem;
+      line-height:1.25;
+      color:#122b49;
+      overflow-wrap:anywhere;
+    }
+    .doc-meta p{
+      margin:5px 0 0;
+      font-size:.65rem;
+      line-height:1.2;
+      color:#7a8799;
+      overflow-wrap:anywhere;
+    }
+    .card-actions{
+      margin-top:auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+    .card-actions button{
+      height:34px;
+      border-radius:8px;
+      border:0;
+      font-size:.72rem;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+    }
+    .view-btn{
+      color:#075fc4;
+      background:#f0f6ff;
+    }
+    .download-btn{
+      color:#075fc4;
+      background:#edf4ff;
+    }
+    .view-btn:hover,.download-btn:hover{
+      background:#dfeeff;
+    }
+
+    .empty{
+      display:none;
+      padding:55px 20px;
+      text-align:center;
+      color:#718096;
+    }
+
+    /* ========================= ABOUT ========================= */
+    .about-strip{
+      margin:24px 0 0;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:linear-gradient(135deg,#f9fbfe,#eef5fc);
+      padding:20px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .about-strip h3{margin:0;font-size:1rem}
+    .about-strip p{margin:6px 0 0;color:var(--muted);font-size:.8rem;line-height:1.55}
+    .privacy-note{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      color:#5c6c80;
+      font-size:.73rem;
+      white-space:nowrap;
+    }
+
+    /* ========================= MODAL / VIEWER ========================= */
+    .viewer{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      background:rgba(4,8,13,.94);
+      display:none;
+      grid-template-rows:auto 1fr auto;
+      color:#fff;
+      backdrop-filter:blur(10px);
+    }
+    .viewer.open{display:grid}
+    .viewer-top{
+      min-height:58px;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background:rgba(7,12,18,.78);
+    }
+    .viewer-count{
+      font-size:.8rem;
+      font-weight:700;
+      color:#e8eef7;
+    }
+    .viewer-title{
+      font-weight:700;
+      font-size:.85rem;
+      max-width:58vw;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-align:center;
+    }
+    .viewer-close{
+      justify-self:end;
+      width:38px;height:38px;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-size:1.35rem;
+    }
+
+    .viewer-stage{
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 74px;
+    }
+    .viewer-image-shell{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    #viewerImage{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      transform-origin:center center;
+      transition:transform .18s ease;
+      user-select:none;
+      box-shadow:0 18px 60px rgba(0,0,0,.4);
+      background:#fff;
+    }
+
+    .nav-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:46px;height:46px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.24);
+      color:#fff;
+      background:rgba(0,0,0,.42);
+      z-index:2;
+    }
+    .nav-arrow:hover{background:rgba(24,124,255,.65)}
+    .nav-arrow.prev{left:18px}
+    .nav-arrow.next{right:18px}
+
+    .viewer-toolbar{
+      min-height:66px;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border-top:1px solid rgba(255,255,255,.10);
+      background:rgba(8,13,20,.82);
+    }
+    .tool-btn{
+      height:42px;
+      min-width:42px;
+      padding:0 12px;
+      border-radius:9px;
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+    }
+    .tool-btn:hover{background:rgba(255,255,255,.12)}
+    .tool-btn.primary{
+      margin-left:10px;
+      border-color:#1b7eff;
+      background:linear-gradient(135deg,#288fff,#0a6ff3);
+      min-width:122px;
+      font-weight:700;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:28px;
+      transform:translate(-50%,20px);
+      z-index:10001;
+      background:#10233f;
+      color:#fff;
+      padding:11px 16px;
+      border-radius:10px;
+      font-size:.78rem;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      box-shadow:var(--shadow);
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    footer{
+      padding:20px 28px 26px;
+      text-align:center;
+      color:#7a8798;
+      font-size:.72rem;
+    }
+
+    /* ========================= RESPONSIVE ========================= */
+    @media(max-width:1100px){
+      .documents-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .hero{padding-left:38px}
+      .category-tabs-wrap{padding:0 34px}
+    }
+    @media(max-width:820px){
+      .site-shell{width:100%;margin:0;border-radius:0;border-left:0;border-right:0}
+      .desktop-nav{display:none}
+      .menu-btn{display:grid;place-items:center}
+      .topbar{height:68px;padding:0 16px}
+      .brand-icon{width:42px;height:42px;border-radius:9px}
+      .brand-icon i{font-size:20px}
+      .brand-copy h1{font-size:1rem}
+      .brand-copy p{font-size:.58rem;margin-top:3px}
+
+      .hero{
+        min-height:145px;
+        padding:28px 24px 56px;
+        background-position:center;
+      }
+      .hero h2{font-size:1.9rem}
+      .category-tabs-wrap{padding:0 18px;margin-top:-22px}
+      .category-tabs{gap:8px}
+      .category-tab{min-height:48px;font-size:.74rem;gap:7px}
+      .category-tab span.label{display:none}
+      .main-content{padding:20px 14px 28px}
+      .section-head{align-items:flex-start;flex-direction:column;gap:12px}
+      .search-box{width:100%}
+      .documents-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:10px}
+      .thumb-wrap{height:180px}
+      .about-strip{align-items:flex-start;flex-direction:column}
+      .privacy-note{white-space:normal}
+      .viewer-stage{padding:12px 48px}
+      .nav-arrow{width:38px;height:38px}
+      .nav-arrow.prev{left:6px}
+      .nav-arrow.next{right:6px}
+      .viewer-toolbar{gap:5px;overflow-x:auto;justify-content:flex-start}
+      .tool-btn{flex:0 0 auto}
+      .tool-btn.primary{margin-left:4px}
+    }
+    @media(max-width:520px){
+      .hero{padding-left:20px;padding-right:20px}
+      .hero p{font-size:.78rem}
+      .category-tabs-wrap{padding:0 12px}
+      .category-tab{padding:0 5px}
+      .documents-grid{grid-template-columns:1fr}
+      .thumb-wrap{height:260px}
+      .doc-meta{min-height:auto}
+      .viewer-top{grid-template-columns:auto 1fr auto;padding:0 10px}
+      .viewer-title{max-width:62vw;font-size:.76rem}
+      .viewer-stage{padding:8px 38px}
+      .tool-label{display:none}
+      .tool-btn.primary{min-width:48px}
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-shell" id="home">
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Khurram Documents home">
+      <span class="brand-icon"><i class="fa-regular fa-folder-open"></i></span>
+      <span class="brand-copy">
+        <h1>Khurram Documents</h1>
+        <p>My Important Documents Collection</p>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="#about"><i class="fa-regular fa-circle-info"></i><span>About</span></a>
+      <a href="#documents"><i class="fa-regular fa-file-arrow-down"></i><span>Documents</span></a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#documents">Documents</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="hero-kicker"></div>
+      <h2>Khurram Documents</h2>
+      <p>A collection of my educational documents, reports and other important files.</p>
+    </div>
+  </section>
+
+  <div class="category-tabs-wrap">
+    <div class="category-tabs" role="tablist" aria-label="Document categories">
+      <button class="category-tab active" data-category="education" type="button">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span class="label">Educational Documents</span>
+        <span class="count-badge" id="countEducation">8</span>
+      </button>
+      <button class="category-tab" data-category="reports" type="button">
+        <i class="fa-regular fa-file-lines"></i>
+        <span class="label">Reports</span>
+        <span class="count-badge" id="countReports">7</span>
+      </button>
+      <button class="category-tab" data-category="others" type="button">
+        <i class="fa-regular fa-folder-open"></i>
+        <span class="label">Others</span>
+        <span class="count-badge" id="countOthers">4</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="main-content" id="documents">
+    <section class="section-panel">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-icon" id="sectionIcon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <h3 id="sectionTitle">Educational Documents</h3>
+            <p id="sectionDescription">Matric, Intermediate, B.A. and other educational documents.</p>
+          </div>
+        </div>
+
+        <label class="search-box" aria-label="Search documents">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="searchInput" type="search" placeholder="Search documents..." autocomplete="off">
+        </label>
+      </div>
+
+      <div class="documents-grid" id="documentsGrid"></div>
+      <div class="empty" id="emptyState">
+        <i class="fa-regular fa-folder-open" style="font-size:2rem;margin-bottom:12px"></i>
+        <div>No matching documents found.</div>
+      </div>
+    </section>
+
+    <section class="about-strip" id="about">
+      <div>
+        <h3>About this collection</h3>
+        <p>This gallery organizes educational records, medical reports and other personal documents in one clean, searchable interface.</p>
+      </div>
+      <div class="privacy-note">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Use a private repository/site if these files contain sensitive personal information.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Khurram Documents · GitHub Pages Document Gallery
+  </footer>
+</div>
+
+<!-- Fullscreen image viewer -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Document image viewer">
+  <div class="viewer-top">
+    <div class="viewer-count" id="viewerCount">1 / 1</div>
+    <div class="viewer-title" id="viewerTitle">Document</div>
+    <button class="viewer-close" id="viewerClose" type="button" aria-label="Close viewer">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <div class="viewer-stage" id="viewerStage">
+    <button class="nav-arrow prev" id="prevBtn" type="button" aria-label="Previous document">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="viewer-image-shell">
+      <img id="viewerImage" alt="">
+    </div>
+
+    <button class="nav-arrow next" id="nextBtn" type="button" aria-label="Next document">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <div class="viewer-toolbar">
+    <button class="tool-btn" id="zoomOutBtn" type="button" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
+    <button class="tool-btn" id="zoomInBtn" type="button" title="Zoom in"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+    <button class="tool-btn" id="resetZoomBtn" type="button" title="Fit to screen"><i class="fa-solid fa-compress"></i><span class="tool-label">Fit</span></button>
+    <button class="tool-btn" id="rotateBtn" type="button" title="Rotate"><i class="fa-solid fa-rotate-right"></i></button>
+    <button class="tool-btn primary" id="viewerDownloadBtn" type="button">
+      <i class="fa-solid fa-download"></i><span class="tool-label">Download 1080</span>
+    </button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Preparing image…</div>
+
+<script>
+  const documents = [
+    // EDUCATIONAL DOCUMENTS
+    { category:"education", title:"Matric Certificate", file:"matric certiifcate.jpg" },
+    { category:"education", title:"Matric Certificate (Back Side)", file:"matric certiifcate back side.png" },
+    { category:"education", title:"Matric Marksheet", file:"Matric marksheet.png" },
+    { category:"education", title:"Inter Certificate", file:"Inter Certificate.jpg" },
+    { category:"education", title:"Intermediate Exam Result Sheet", file:"Multan Intermediate Exam Result Sheet.png" },
+    { category:"education", title:"B.A. Degree", file:"B.A. Degree.jpg" },
+    { category:"education", title:"B.A. Degree (Back Side)", file:"B.A. Degree back side.png" },
+    { category:"education", title:"B.A. Transcript", file:"B.A. Transcript.png" },
+
+    // REPORTS
+    { category:"reports", title:"Dua PCR Report 2022", file:"Dua PCR Report 2022.png" },
+    { category:"reports", title:"PCR 2023", file:"PCR 2023.png" },
+    { category:"reports", title:"PCR 2024", file:"PCR 2024.png" },
+    { category:"reports", title:"PCR 2025", file:"PCR 2025.png" },
+    { category:"reports", title:"PCR 2026", file:"PCR 2026.png" },
+    { category:"reports", title:"CBC Report 2024", file:"CBC Report 2024.png" },
+    { category:"reports", title:"Medical Fitness Certificate Form", file:"Medical Fitness Certificate Form.png" },
+
+    // OTHERS
+    { category:"others", title:"ID Front", file:"id front.png" },
+    { category:"others", title:"ID Backside", file:"id backside.png" },
+    { category:"others", title:"Domicile", file:"Domicile .jpg" },
+    { category:"others", title:"Student E-Card", file:"BC250409253_StudentECard.jpg" }
+  ];
+
+  const categoryInfo = {
+    education:{
+      title:"Educational Documents",
+      description:"Matric, Intermediate, B.A. and other educational documents.",
+      icon:"fa-solid fa-graduation-cap"
+    },
+    reports:{
+      title:"Reports",
+      description:"Medical, laboratory, PCR and fitness reports.",
+      icon:"fa-regular fa-file-lines"
+    },
+    others:{
+      title:"Others",
+      description:"Identity, domicile, student card and other important documents.",
+      icon:"fa-regular fa-folder-open"
+    }
+  };
+
+  let activeCategory = "education";
+  let visibleDocuments = [];
+  let viewerIndex = 0;
+  let zoom = 1;
+  let rotation = 0;
+
+  const grid = document.getElementById("documentsGrid");
+  const tabs = [...document.querySelectorAll(".category-tab")];
+  const searchInput = document.getElementById("searchInput");
+  const sectionTitle = document.getElementById("sectionTitle");
+  const sectionDescription = document.getElementById("sectionDescription");
+  const sectionIcon = document.getElementById("sectionIcon");
+  const emptyState = document.getElementById("emptyState");
+
+  const viewer = document.getElementById("viewer");
+  const viewerImage = document.getElementById("viewerImage");
+  const viewerTitle = document.getElementById("viewerTitle");
+  const viewerCount = document.getElementById("viewerCount");
+  const toast = document.getElementById("toast");
+
+  function updateCounts(){
+    document.getElementById("countEducation").textContent = documents.filter(d => d.category === "education").length;
+    document.getElementById("countReports").textContent = documents.filter(d => d.category === "reports").length;
+    document.getElementById("countOthers").textContent = documents.filter(d => d.category === "others").length;
+  }
+
+  function escapeHtml(text){
+    return String(text)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;");
+  }
+
+  function renderDocuments(){
+    const term = searchInput.value.trim().toLowerCase();
+
+    visibleDocuments = documents.filter(doc => {
+      return doc.category === activeCategory &&
+        (doc.title.toLowerCase().includes(term) || doc.file.toLowerCase().includes(term));
+    });
+
+    grid.innerHTML = visibleDocuments.map((doc, index) => `
+      <article class="doc-card">
+        <button class="thumb-wrap" type="button" onclick="openViewer(${index})" aria-label="View ${escapeHtml(doc.title)}" style="border:0;padding:0;width:100%">
+          <img src="${escapeHtml(doc.file)}" alt="${escapeHtml(doc.title)}" loading="lazy">
+        </button>
+
+        <div class="doc-meta">
+          <h4>${escapeHtml(doc.title)}</h4>
+          <p>${escapeHtml(doc.file)}</p>
+        </div>
+
+        <div class="card-actions">
+          <button class="view-btn" type="button" onclick="openViewer(${index})">
+            <i class="fa-regular fa-eye"></i> View
+          </button>
+          <button class="download-btn" type="button" onclick="download1080ByIndex(${index})">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </div>
+      </article>
+    `).join("");
+
+    emptyState.style.display = visibleDocuments.length ? "none" : "block";
+  }
+
+  function setCategory(category){
+    activeCategory = category;
+    searchInput.value = "";
+
+    tabs.forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.category === category);
+    });
+
+    const info = categoryInfo[category];
+    sectionTitle.textContent = info.title;
+    sectionDescription.textContent = info.description;
+    sectionIcon.innerHTML = `<i class="${info.icon}"></i>`;
+
+    renderDocuments();
+    document.getElementById("documents").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => setCategory(tab.dataset.category));
+  });
+
+  searchInput.addEventListener("input", renderDocuments);
+
+  /* ========================= VIEWER ========================= */
+  function openViewer(index){
+    if(!visibleDocuments.length) return;
+    viewerIndex = index;
+    zoom = 1;
+    rotation = 0;
+    updateViewer();
+    viewer.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeViewer(){
+    viewer.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  function updateViewer(){
+    const doc = visibleDocuments[viewerIndex];
+    if(!doc) return;
+
+    viewerImage.src = doc.file;
+    viewerImage.alt = doc.title;
+    viewerTitle.textContent = doc.file;
+    viewerCount.textContent = `${viewerIndex + 1} / ${visibleDocuments.length}`;
+    applyTransform();
+  }
+
+  function applyTransform(){
+    viewerImage.style.transform = `scale(${zoom}) rotate(${rotation}deg)`;
+  }
+
+  function changeDocument(step){
+    viewerIndex = (viewerIndex + step + visibleDocuments.length) % visibleDocuments.length;
+    zoom = 1;
+    rotation = 0;
+    updateViewer();
+  }
+
+  document.getElementById("viewerClose").addEventListener("click", closeViewer);
+  document.getElementById("prevBtn").addEventListener("click", () => changeDocument(-1));
+  document.getElementById("nextBtn").addEventListener("click", () => changeDocument(1));
+
+  document.getElementById("zoomInBtn").addEventListener("click", () => {
+    zoom = Math.min(zoom + 0.2, 4);
+    applyTransform();
+  });
+
+  document.getElementById("zoomOutBtn").addEventListener("click", () => {
+    zoom = Math.max(zoom - 0.2, 0.4);
+    applyTransform();
+  });
+
+  document.getElementById("resetZoomBtn").addEventListener("click", () => {
+    zoom = 1;
+    rotation = 0;
+    applyTransform();
+  });
+
+  document.getElementById("rotateBtn").addEventListener("click", () => {
+    rotation = (rotation + 90) % 360;
+    applyTransform();
+  });
+
+  document.getElementById("viewerDownloadBtn").addEventListener("click", () => {
+    download1080(visibleDocuments[viewerIndex]);
+  });
+
+  viewer.addEventListener("click", event => {
+    if(event.target === viewer) closeViewer();
+  });
+
+  document.addEventListener("keydown", event => {
+    if(!viewer.classList.contains("open")) return;
+
+    if(event.key === "Escape") closeViewer();
+    if(event.key === "ArrowLeft") changeDocument(-1);
+    if(event.key === "ArrowRight") changeDocument(1);
+    if(event.key === "+") {
+      zoom = Math.min(zoom + .2, 4);
+      applyTransform();
+    }
+    if(event.key === "-") {
+      zoom = Math.max(zoom - .2, .4);
+      applyTransform();
+    }
+  });
+
+  /* ========================= 1080 DOWNLOAD =========================
+     Portrait images are fitted within 1080 x 1920.
+     Landscape images are fitted within 1920 x 1080.
+     Aspect ratio is preserved.
+  ================================================================== */
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  function download1080ByIndex(index){
+    download1080(visibleDocuments[index]);
+  }
+
+  function download1080(doc){
+    if(!doc) return;
+
+    showToast("Preparing 1080 download…");
+
+    const img = new Image();
+    img.decoding = "async";
+
+    img.onload = () => {
+      const portrait = img.naturalHeight >= img.naturalWidth;
+      const maxW = portrait ? 1080 : 1920;
+      const maxH = portrait ? 1920 : 1080;
+
+      const fitScale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight);
+      const scale = fitScale; // creates a true 1080-class export while preserving aspect ratio
+
+      const outW = Math.max(1, Math.round(img.naturalWidth * scale));
+      const outH = Math.max(1, Math.round(img.naturalHeight * scale));
+
+      const canvas = document.createElement("canvas");
+      canvas.width = outW;
+      canvas.height = outH;
+
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0,0,outW,outH);
+      ctx.drawImage(img,0,0,outW,outH);
+
+      const ext = doc.file.toLowerCase().endsWith(".png") ? "png" : "jpg";
+      const mime = ext === "png" ? "image/png" : "image/jpeg";
+
+      canvas.toBlob(blob => {
+        if(!blob){
+          fallbackDownload(doc);
+          return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${doc.title.replace(/[^\w\- ]+/g,"").trim().replace(/\s+/g,"_")}_1080.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        showToast(`Downloaded ${outW} × ${outH}`);
+      }, mime, .95);
+    };
+
+    img.onerror = () => fallbackDownload(doc);
+    img.src = doc.file;
+  }
+
+  function fallbackDownload(doc){
+    const a = document.createElement("a");
+    a.href = doc.file;
+    a.download = doc.file;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    showToast("Original image downloaded.");
+  }
+
+  /* ========================= MOBILE MENU ========================= */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded","false");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  /* Prevent broken thumbnails from ruining the layout */
+  document.addEventListener("error", event => {
+    if(event.target.tagName === "IMG" && event.target.closest(".thumb-wrap")){
+      event.target.style.display = "none";
+      const holder = event.target.closest(".thumb-wrap");
+      if(!holder.querySelector(".broken-placeholder")){
+        holder.insertAdjacentHTML("beforeend",
+          '<div class="broken-placeholder" style="display:grid;place-items:center;text-align:center;color:#7b8ba0;font-size:.72rem;padding:16px"><div><i class="fa-regular fa-file-image" style="font-size:2rem;margin-bottom:8px"></i><br>Image filename/path not found</div></div>'
+        );
+      }
+    }
+  }, true);
+
+  updateCounts();
+  renderDocuments();
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
